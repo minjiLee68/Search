@@ -1,23 +1,30 @@
 package com.sophia.search
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sophia.search.ViewModel.AppViewModel
 import com.sophia.search.ViewModel.AppViewModelFactory
 import com.sophia.search.databinding.ActivityMainBinding
+import com.sophia.search.databinding.FragInformationBinding
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
-//    private lateinit var bottomNavigationView: BottomNavigationView
+
 
     private val viewModel by viewModels<AppViewModel> {
         AppViewModelFactory(application)
@@ -34,39 +41,6 @@ class MainActivity : AppCompatActivity(){
 
         initNavigationBar()
     }
-
-
-//    private fun setObserver() {
-//        viewModel.fragmentTypeLiveData.observe(
-//            this,
-//            {
-//                val targetFragment =
-//                    when (it) {
-//                        AppViewModel.FragmentType.INFOR -> inforFragment
-//                        AppViewModel.FragmentType.EDIT -> editFragment
-//                        AppViewModel.FragmentType.MINJI -> minjiFragment
-//
-//                        else -> editFragment
-//                    }
-//                replaceFragment(targetFragment)
-//            }
-//        )
-//    }
-
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.information -> {
-//                replaceFragment(inforFragment)
-//            }
-//            R.id.edit -> {
-//                replaceFragment(editFragment)
-//            }
-//            R.id.minji -> {
-//                replaceFragment(minjiFragment)
-//            }
-//        }
-//        true
-//    }
 
     private fun initNavigationBar() {
         binding.navBottom.run {
@@ -93,8 +67,5 @@ class MainActivity : AppCompatActivity(){
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(binding.fragment.id, fragment).commit()
     }
-
-
-
 
 }

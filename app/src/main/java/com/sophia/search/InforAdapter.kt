@@ -2,13 +2,19 @@ package com.sophia.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sophia.search.Room.Infor
 import com.sophia.search.databinding.ItemBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
-class InforAdapter(private val listener: ItemListener) : ListAdapter<Infor, InforViewHolder>(
+class InforAdapter(private val listener: ItemListener)
+    : ListAdapter<Infor, InforViewHolder>(
 
     object : DiffUtil.ItemCallback<Infor>() {
         override fun areItemsTheSame(oldItem: Infor, newItem: Infor): Boolean =
@@ -20,6 +26,7 @@ class InforAdapter(private val listener: ItemListener) : ListAdapter<Infor, Info
     }
 
 ) {
+
     interface ItemListener {
 //        fun onItemClick(position: Int)
         fun onItemLongClick(position: Int)
@@ -38,7 +45,10 @@ class InforAdapter(private val listener: ItemListener) : ListAdapter<Infor, Info
     override fun onBindViewHolder(holder: InforViewHolder, position: Int) {
         holder.updateView(getItem(position))
     }
+
 }
+
+
 
 class InforViewHolder(
     private val binding: ItemBinding,
@@ -67,5 +77,4 @@ class InforViewHolder(
             tvPhnumber.text = infor.phnumber
         }
     }
-
 }

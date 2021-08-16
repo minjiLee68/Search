@@ -1,9 +1,10 @@
 package com.sophia.search.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Activity
+import android.content.Intent
+import android.text.TextUtils
+import androidx.lifecycle.*
+import com.bumptech.glide.Glide
 import com.sophia.search.Room.AppRepository
 import com.sophia.search.Room.Infor
 import kotlinx.coroutines.Dispatchers
@@ -24,17 +25,29 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
 //        _fragmentTypeLivaData.value = fragmentType
 //    }
 
-    val inforListLiveData = repository.getAllinfor()
+    fun inforListLiveData() = repository.getAllinfor()
+
+//    private val searchStringLiveData = MutableLiveData<String>("")
+//
+//    val getAllinfor : LiveData<List<Infor>> =  Transformations.switchMap(searchStringLiveData)
+//    {
+//        string ->
+//        if (TextUtils.isEmpty(string)) {
+//           repository.getAllinfor()
+//        } else {
+//           repository.searchDatabase(string)
+//        }
+//    }
+
 
     private val _editLiveData = MutableLiveData<Infor?>()
     val editLiveData: LiveData<Infor?>
         get() = _editLiveData
 
     fun setEditMemo(position: Int) {
-        val infor = inforListLiveData.value?.get(position) ?: throw Exception()
+        val infor = inforListLiveData().value?.get(position) ?: throw Exception()
         _editLiveData.value = infor
     }
-
 
     fun saveinfor(name: String, phnumber: String) {
         viewModelScope.launch {
@@ -72,8 +85,10 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
 
     fun deleteinfor(position: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val infor = inforListLiveData.value?.get(position) ?: throw Exception()
+            val infor = inforListLiveData().value?.get(position) ?: throw Exception()
             repository.deleteinfor(infor)
         }
     }
+
+
 }

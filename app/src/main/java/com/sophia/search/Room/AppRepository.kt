@@ -31,4 +31,7 @@ class AppRepository(application: Application) {
         inforDao.update(infor)
     }
 
+    fun searchDatabase(infor: String): LiveData<List<Infor>> =
+       inforDao.searchDatabase(infor)
+
 }
