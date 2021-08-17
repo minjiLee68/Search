@@ -2,12 +2,10 @@ package com.sophia.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.sophia.search.Room.Infor
 import com.sophia.search.databinding.ItemBinding
 import java.util.*
@@ -28,9 +26,9 @@ class InforAdapter(private val listener: ItemListener)
 ) {
 
     interface ItemListener {
-//        fun onItemClick(position: Int)
         fun onItemLongClick(position: Int)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InforViewHolder =
         InforViewHolder(
@@ -46,17 +44,52 @@ class InforAdapter(private val listener: ItemListener)
         holder.updateView(getItem(position))
     }
 
+//    override fun getFilter(): Filter {
+//
+//        return object : Filter() {
+//            override fun performFiltering(constraint: CharSequence?): FilterResults {
+//                val charString = constraint?.toString() ?: ""
+//                if (charString.isEmpty()) {
+//                    inforListFilter = inforList
+//                } else {
+//                    val filteredList = ArrayList<Infor>()
+//                    inforList.filter {
+//                        (it.name.contains(constraint!!)) or
+//                                (it.phnumber.contains(constraint))
+//                    }.forEach { filteredList.add(it) }
+//                    inforListFilter = filteredList
+//
+//                    Log.e("performFiltering: t1:", filteredList.size.toString())
+//                }
+//                return FilterResults().apply { values = inforListFilter }
+//            }
+//
+//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+//
+//                inforListFilter = if (results?.values == null) {
+//                    ArrayList()
+//                } else {
+//                    results.values as ArrayList<Infor>
+//                }
+//                notifyDataSetChanged()
+//                Log.e("performFiltering: t2 ", "called" + inforListFilter.size)
+//            }
+//
+//        }
+//    }
+
+
+
 }
 
 
+    class InforViewHolder(
+        private val binding: ItemBinding,
+        listener: InforAdapter.ItemListener
+    ): RecyclerView.ViewHolder(binding.root) {
 
-class InforViewHolder(
-    private val binding: ItemBinding,
-    listener: InforAdapter.ItemListener
-): RecyclerView.ViewHolder(binding.root) {
-
-    init {
-        binding.container.let {
+        init {
+          binding.container.let {
 //            it.setOnClickListener {
 //                if (adapterPosition != RecyclerView.NO_POSITION) {
 //                    listener.onItemClick(adapterPosition)

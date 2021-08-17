@@ -27,17 +27,17 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
 
     fun inforListLiveData() = repository.getAllinfor()
 
-//    private val searchStringLiveData = MutableLiveData<String>("")
-//
-//    val getAllinfor : LiveData<List<Infor>> =  Transformations.switchMap(searchStringLiveData)
-//    {
-//        string ->
-//        if (TextUtils.isEmpty(string)) {
-//           repository.getAllinfor()
-//        } else {
-//           repository.searchDatabase(string)
-//        }
-//    }
+    private val searchStringLiveData = MutableLiveData<String>("")
+    val allProducts: LiveData<List<Infor>> = Transformations.switchMap(searchStringLiveData)
+    {
+        string ->
+        if (TextUtils.isEmpty(string)) {
+            repository.getAllinfor()
+
+        } else {
+            repository.getAllInforByName(string)
+        }
+    }
 
 
     private val _editLiveData = MutableLiveData<Infor?>()
@@ -88,6 +88,10 @@ class AppViewModel(private val repository: AppRepository) : ViewModel() {
             val infor = inforListLiveData().value?.get(position) ?: throw Exception()
             repository.deleteinfor(infor)
         }
+    }
+
+    fun searchNameChanged(name: String) {
+        searchStringLiveData.value = name
     }
 
 

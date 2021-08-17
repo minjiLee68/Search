@@ -19,6 +19,9 @@ class AppRepository(application: Application) {
     fun getAllinfor(): LiveData<List<Infor>> =
         inforDao.getAll()
 
+    fun getAllInforByName(name: String): LiveData<List<Infor>> =
+        inforDao.getListAllByName(name)
+
     fun insertinfor(infor: Infor) {
         inforDao.insert(infor)
     }
@@ -30,8 +33,5 @@ class AppRepository(application: Application) {
     fun updateinfor(infor: Infor) {
         inforDao.update(infor)
     }
-
-    fun searchDatabase(infor: String): LiveData<List<Infor>> =
-       inforDao.searchDatabase(infor)
 
 }

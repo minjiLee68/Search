@@ -66,7 +66,6 @@ class EditFragment() : Fragment() {
                     binding.run {
                         etName.setText(it.name)
                         etPhnumber.setText(it.phnumber)
-                        imageGlide.setImageResource(galleryRequestCode)
                     }
                 }
             }

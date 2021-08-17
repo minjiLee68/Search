@@ -17,4 +17,7 @@ interface InforDao {
 
     @Update
     fun update(infor: Infor)
+
+    @Query("SELECT * FROM infor WHERE name LIKE :name or LOWER(name) like LOWER(:name)")
+    fun getListAllByName(name: String): LiveData<List<Infor>>
 }
