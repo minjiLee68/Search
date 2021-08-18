@@ -43,43 +43,7 @@ class InforAdapter(private val listener: ItemListener)
     override fun onBindViewHolder(holder: InforViewHolder, position: Int) {
         holder.updateView(getItem(position))
     }
-
-//    override fun getFilter(): Filter {
-//
-//        return object : Filter() {
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                val charString = constraint?.toString() ?: ""
-//                if (charString.isEmpty()) {
-//                    inforListFilter = inforList
-//                } else {
-//                    val filteredList = ArrayList<Infor>()
-//                    inforList.filter {
-//                        (it.name.contains(constraint!!)) or
-//                                (it.phnumber.contains(constraint))
-//                    }.forEach { filteredList.add(it) }
-//                    inforListFilter = filteredList
-//
-//                    Log.e("performFiltering: t1:", filteredList.size.toString())
-//                }
-//                return FilterResults().apply { values = inforListFilter }
-//            }
-//
-//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//
-//                inforListFilter = if (results?.values == null) {
-//                    ArrayList()
-//                } else {
-//                    results.values as ArrayList<Infor>
-//                }
-//                notifyDataSetChanged()
-//                Log.e("performFiltering: t2 ", "called" + inforListFilter.size)
-//            }
-//
-//        }
-//    }
-
-
-
+    
 }
 
 

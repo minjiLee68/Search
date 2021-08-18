@@ -27,7 +27,6 @@ class InforFragment() : Fragment(), InforAdapter.ItemListener {
         get() = _binding!!
 
     private lateinit var adapter: InforAdapter
-    lateinit var filteredList: ArrayList<Infor>
 
     private val viewModel by activityViewModels<AppViewModel> {
         AppViewModelFactory(requireActivity().application)
@@ -47,7 +46,8 @@ class InforFragment() : Fragment(), InforAdapter.ItemListener {
 
         viewModel.allProducts.observe(
             viewLifecycleOwner, {
-                products ->
+                products
+                ->
                 (binding.recyclerview.adapter as InforAdapter).submitList(products)
             }
         )

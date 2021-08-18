@@ -13,18 +13,6 @@ import java.lang.Exception
 
 class AppViewModel(private val repository: AppRepository) : ViewModel() {
 
-//    enum class FragmentType {
-//        EDIT, INFOR, MINJI
-//    }
-//
-//    private val _fragmentTypeLivaData = MutableLiveData(FragmentType.EDIT)
-//    val fragmentTypeLiveData: LiveData<FragmentType>
-//        get() = _fragmentTypeLivaData
-//
-//    fun replaceFragment(fragmentType: FragmentType) {
-//        _fragmentTypeLivaData.value = fragmentType
-//    }
-
     fun inforListLiveData() = repository.getAllinfor()
 
     private val searchStringLiveData = MutableLiveData<String>("")
